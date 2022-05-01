@@ -4,18 +4,21 @@ import Main from "./src/components/Main";
 import AnimatedSplash from "react-native-animated-splash-screen";
 import SplashAnimado from "./src/components/SplashAnimado";
 import useSplashIsLoaded from "./src/hooks/useSplashIsLoaded";
+import AuthProvider from "./src/context/firebaseContext/AuthProvider";
 
 export default function App() {
   const { isLoaded } = useSplashIsLoaded();
   return (
-    <AnimatedSplash
-      translucent={true}
-      isLoaded={isLoaded}
-      backgroundColor="#ffffff"
-      customComponent={<SplashAnimado />}
-    >
-      <Main></Main>
-    </AnimatedSplash>
+    <AuthProvider>
+      <AnimatedSplash
+        translucent={true}
+        isLoaded={isLoaded}
+        backgroundColor="#ffffff"
+        customComponent={<SplashAnimado />}
+      >
+        <Main></Main>
+      </AnimatedSplash>
+    </AuthProvider>
   );
 }
 
