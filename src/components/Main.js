@@ -4,6 +4,9 @@ import Constants from "expo-constants";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
+import Toast from "react-native-toast-message";
+import { createConfiguracionToast } from "../configuraciones/configToast";
+
 //Iconos desde react-native-vector-icons
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Login from "../pages/Login";
@@ -11,7 +14,8 @@ import Home from "../pages/Home";
 
 //Instanciar el componente d enavecaion que queremos.
 const Stack = createNativeStackNavigator();
-
+//configuracion del Toast
+const configToast = createConfiguracionToast();
 export default function Main() {
   return (
     <View
@@ -19,10 +23,14 @@ export default function Main() {
     >
       <StatusBar style="dark"></StatusBar>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="Login"
+        >
           <Stack.Screen name="Login" component={Login}></Stack.Screen>
           <Stack.Screen name="Home" component={Home}></Stack.Screen>
         </Stack.Navigator>
+        <Toast config={configToast} />
       </NavigationContainer>
     </View>
   );

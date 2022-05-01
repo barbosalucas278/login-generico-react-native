@@ -7,20 +7,23 @@
     "icon": "./assets/icono.png",
     "splash": {
       "image": "",
-      "resizeMode": "",
-      "backgroundColor": ""
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
-      }
+      },
+      "package": "com.issos.logingenerico"
     },
     "web": {
       "favicon": "./assets/favicon.png"

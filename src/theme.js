@@ -11,9 +11,9 @@ const theme = {
   },
   fontSizes: {
     heading: 40,
-    subHeading: 16,
+    subHeading: 25,
     body: 14,
-    small: 10,
+    small: 12,
   },
   font: {
     main: "normal",
