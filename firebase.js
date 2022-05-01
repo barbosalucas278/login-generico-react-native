@@ -20,26 +20,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const logInWithEmailAndPassword = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password);
-};
-const logout = () => {
-  try {
-    return signOut(auth);
-  } catch (error) {
-    throw procesarErrorFirebase(error);
-  }
-};
-function procesarErrorFirebase(error) {
-  switch (error.code) {
-    case "auth/internal-error":
-      return "Ha ocurrido un error inesperado en el servidor.";
-    case "auth/invalid-email":
-      return "El email ingresado es inválido.";
-    case "auth/wrong-password":
-      return "El email o el password ingresado es incorrecto.";
-    case "auth/user-not-found":
-      return "El email no pertenece a un usuario registrado.";
-  }
-}
-export { auth, logInWithEmailAndPassword, logout, procesarErrorFirebase };
+export { auth, signInWithEmailAndPassword, signOut };

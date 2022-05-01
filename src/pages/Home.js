@@ -1,12 +1,15 @@
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
-import React from "react";
+import { React, useContext } from "react";
 import { logout } from "../../firebase";
 import theme from "../theme";
 import StyledTouchableHighlight from "../components/StyledTouchableHighlight";
+import AuthContext from "../context/firebaseContext/AuthContext";
 
 export default function Home({ navigation }) {
+  const { logOut, setIsLogin } = useContext(AuthContext);
   const handlelogout = () => {
-    logout().then(() => {
+    logOut().then(() => {
+      setIsLogin(false);
       navigation.navigate("Login");
     });
   };
