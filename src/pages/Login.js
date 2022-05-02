@@ -16,9 +16,10 @@ import StyledTouchableHighlight from "../components/StyledTouchableHighlight";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 import theme from "../theme";
 import AuthContext from "../context/firebaseContext/AuthContext";
+import ContenedorAccesoRapido from "../components/ContenedorAccesoRapido";
 const initialValues = {
-  email: "admin@admin.com",
-  password: "11111111",
+  email: "",
+  password: "",
 };
 let resetPresForm = {};
 const ResettingForm = () => {
@@ -64,6 +65,9 @@ export default function Login({ navigation }) {
         });
       });
   };
+  const handleClickRapido = (user) => {
+    onLogin(user);
+  };
   return (
     <Formik
       validationSchema={loginValidationSchema}
@@ -91,32 +95,36 @@ export default function Login({ navigation }) {
                 </StyledText>
               </View>
               {formulario && (
-                <KeyboardAvoidingView
-                  contentContainerStyle={styles.contenedor}
-                  behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                  <View style={styles.contenedorForm}>
-                    <FormikInputValue
-                      placeholder="Email"
-                      name="email"
-                      keyboardType="email-address"
-                      size="large"
-                    ></FormikInputValue>
-                    <FormikInputValue
-                      placeholder="Password"
-                      name="password"
-                      secureTextEntry
-                      size="large"
-                    ></FormikInputValue>
-                    <StyledTouchableHighlight
-                      color="secondary"
-                      onPress={handleSubmit}
-                    >
-                      Iniciar Sesión
-                    </StyledTouchableHighlight>
-                    <ResettingForm />
-                  </View>
-                </KeyboardAvoidingView>
+                <View style={styles.contenedor}>
+                  <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                  >
+                    <View style={styles.contenedorForm}>
+                      <FormikInputValue
+                        placeholder="Email"
+                        name="email"
+                        keyboardType="email-address"
+                        size="large"
+                      ></FormikInputValue>
+                      <FormikInputValue
+                        placeholder="Password"
+                        name="password"
+                        secureTextEntry
+                        size="large"
+                      ></FormikInputValue>
+                      <StyledTouchableHighlight
+                        color="secondary"
+                        onPress={handleSubmit}
+                      >
+                        Iniciar Sesión
+                      </StyledTouchableHighlight>
+                      <ResettingForm />
+                    </View>
+                  </KeyboardAvoidingView>
+                  <ContenedorAccesoRapido
+                    onClick={handleClickRapido}
+                  ></ContenedorAccesoRapido>
+                </View>
               )}
               {spinner && (
                 <View style={styles.contenedorForm}>
@@ -147,8 +155,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
+    marginBottom: 30,
   },
-  contenedorForm: {},
+  contenedorForm: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+    height: 300,
+    marginTop: -100,
+  },
   contenedorSpinner: {
     flex: 1,
     alignItems: "center",
